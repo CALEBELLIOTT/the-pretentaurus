@@ -34,6 +34,7 @@ export class CommentsController extends BaseController {
 
     async create(req, res, next) {
         try {
+            req.body.numberOfLikes = 0
             req.body.creatorId = req.userInfo.id
             let comment = await commentsService.create(req.body)
             return res.send(comment)
