@@ -4,12 +4,16 @@ import { postsService } from "../Services/PostsService.js";
 function _draw() {
     let posts = ProxyState.posts
     let template = ''
+    posts.forEach(p => template += p.Template)
+    document.getElementById('post-body').innerHTML = template
 }
 
 
 export class PostController {
     constructor() {
         console.log('post controllers');
+        this.getPosts()
+        ProxyState.on('posts', _draw)
     }
 
     async createPost() {
@@ -29,6 +33,24 @@ export class PostController {
         } catch (error) {
             console.error(error);
         }
+        await this.getPosts()
+    }
+
+    async getPosts() {
+        try {
+            await postsService.getPosts()
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    async deletePost(id) {
+        try {
+            await postsService.deletePost(id)
+        } catch (error) {
+            console.error(error)
+        }
+        this.getPosts()
     }
 
 }

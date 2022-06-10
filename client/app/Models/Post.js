@@ -6,23 +6,26 @@ export class Post {
     this.numberOfLikes = data.numberOfLikes
     this.likedBy = data.likedBy
     this.imgUrl = data.imgUrl
-
+    this.id = data.id
   }
 
 
   get Template() {
     return `
-        <div class="col-4">
+        <div class="col-md-4">
 <div class="post-card rounded p-2">
   <div class="d-flex justify-content-between ">
-    <h3>Creator name</h3>
-    <button class="btn btn-danger ">Delete</button>
+    <h3></h3>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#post-comment-modal">
+  See details
+</button>
+    <button class="btn btn-danger " onclick="app.postsController.deletePost('${this.id}')">Delete</button>
   </div>
   <img class="img-fluid p-4"
-    src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+    src="${this.imgUrl}"
     alt="">
-  <h4 class="">title</h4>
-  <p class="text-center">description</p>
+  <h4 class="">${this.title}</h4>
+  <p class="text-center">${this.editedDescription}</p>
 </div>
 </div>
 `
