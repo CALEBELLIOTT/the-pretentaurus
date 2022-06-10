@@ -45,6 +45,7 @@ export class PostsController extends BaseController {
 
     async create(req, res, next) {
         try {
+            req.body.numberOfLikes = 0 
             req.body.creatorId = req.userInfo.id
             let post = await postsService.create(req.body)
             return res.send(post)
