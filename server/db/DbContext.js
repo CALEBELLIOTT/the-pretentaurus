@@ -9,6 +9,8 @@ class DbContext {
 
   Account = mongoose.model('Account', AccountSchema);
 
+  Profiles = mongoose.model('Profile', AccountSchema, 'accounts')
+
   Posts = mongoose.model('Post', PostSchema)
 
   Comments = mongoose.model('Comment', CommentSchema)
