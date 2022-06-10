@@ -13,9 +13,10 @@ export class PostsController extends BaseController {
             .get('/:id', this.getById)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.create)
+            .put('/:id', this.edit)
             .delete('/:id', this.remove)
     }
-   
+
 
     async getAll(req, res, next) {
         try {
@@ -48,6 +49,17 @@ export class PostsController extends BaseController {
             req.body.numberOfLikes = 0 
             req.body.creatorId = req.userInfo.id
             let post = await postsService.create(req.body)
+            return res.send(post)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async edit(req, res, next) {
+        try {
+            req.body.id = req.params.id
+            req.body.creatorId = req.userInfo.id
+            const post = await postsService.edit(req.body)
             return res.send(post)
         } catch (error) {
             next(error)

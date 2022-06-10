@@ -12,16 +12,24 @@ class PostsService {
         const post = await dbContext.Posts.create(body)
         return post
     }
+
+    async edit(update) {
+        let original = await this.getById(update.id)
+        if (original.creatorId.toString() !== update.creatorId) {
+            throw new Forbidden("You cannot edit this post")
+        }
+    }
+
     async getById(id) {
         const foundPost = await dbContext.Posts.findById(id)
-        if (!foundPost){
-            throw new BadRequest ('No Post found with that Id')
+        if (!foundPost) {
+            throw new BadRequest('No Post found with that Id')
         }
         return foundPost
     }
     async remove(postId, userId) {
         const post = await this.getById(postId)
-        if (post.creatorId.toString() !== userId){
+        if (post.creatorId.toString() !== userId) {
             throw new Forbidden('You did not create this Post')
         }
         await post.remove()
