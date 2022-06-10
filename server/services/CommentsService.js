@@ -39,6 +39,20 @@ class CommentsService {
         return original
     }
 
+    async like(body) {
+        let original = await this.getById(body.id)
+        let found = original.likedBy.find(id => id == body.creatorId)
+        if (!found) {
+            original.numberOfLikes++
+            original.likedBy.push(body.creatorId)
+        } else {
+            original.numberOfLikes--
+            original.likedBy = original.likedBy.filter(id => id != body.creatorId)
+        }
+        await original.save()
+        return original
+    }
+
     async remove(commentId, userId) {
         const comment = await this.getById(commentId)
         if (comment.creatorId.toString() !== userId) {

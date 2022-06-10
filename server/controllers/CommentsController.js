@@ -11,10 +11,11 @@ export class CommentsController extends BaseController {
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.create)
             .put('/:id', this.edit)
+            .put('/:id/likes', this.like)
             .delete('/:id', this.remove)
     }
-   
-    
+
+
     async getAll(req, res, next) {
         try {
             let comments = await commentsService.getAll(req.query)
@@ -23,13 +24,13 @@ export class CommentsController extends BaseController {
             next(error)
         }
     }
-   async getById(req, res, next) {
-       try {
-        let comment = await commentsService.getById(req.params.id)
-        return res.send(comment)
-       } catch (error) {
-        next(error)
-       }
+    async getById(req, res, next) {
+        try {
+            let comment = await commentsService.getById(req.params.id)
+            return res.send(comment)
+        } catch (error) {
+            next(error)
+        }
     }
 
     async create(req, res, next) {
@@ -43,14 +44,25 @@ export class CommentsController extends BaseController {
         }
     }
 
-   async edit(req, res, next) {
+    async edit(req, res, next) {
         try {
             req.body.id = req.params.id
             req.body.creatorId = req.userInfo.id
             const comment = await commentsService.edit(req.body)
             return res.send(comment)
         } catch (error) {
-         next (error)   
+            next(error)
+        }
+    }
+
+    async like(req, res, next) {
+        try {
+            req.body.id = req.params.id
+            req.body.creatorId = req.userInfo.id
+            let liked = await commentsService.like(req.body)
+            return res.send(liked)
+        } catch (error) {
+            next(error)
         }
     }
 
