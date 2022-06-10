@@ -6,7 +6,7 @@ import { BadRequest, Forbidden } from "../utils/Errors";
 class CommentsService {
 
     async getAll(query = {}) {
-        return await dbContext.Comments.find(query)
+        return await dbContext.Comments.find(query).populate('creator', 'name')
     }
 
     async getById(id) {
@@ -14,11 +14,14 @@ class CommentsService {
         if (!foundComment) {
             throw new BadRequest("No comments with that Id")
         }
+        await foundComment.populate('creator', 'name')
         return foundComment
     }
 
     async create(body) {
-        return await dbContext.Comments.create(body)
+        const comment = await dbContext.Comments.create(body)
+        await comment.populate('creator', 'name')
+        return comment
     }
 
     async edit(update) {

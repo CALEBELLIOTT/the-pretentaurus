@@ -6,7 +6,7 @@ import { logger } from "../utils/Logger"
 class PostsService {
     async getAll() {
         const posts = await dbContext.Posts.find().sort('roomNumber').populate('creator', 'name')
-        //  posts.map(async(p) =>   {
+            //  posts.map(async(p) =>   {
         //     await p.populate('creator', 'name')
         // } )
         return posts
