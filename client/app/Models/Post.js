@@ -13,7 +13,7 @@ export class Post {
   get Template() {
     return `
         <div class="col-md-4">
-<div class="post-card rounded p-2">
+<div class="post-card rounded p-2 shadow">
   <div class="d-flex justify-content-between ">
     <h3></h3>
     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#post-comment-modal">
