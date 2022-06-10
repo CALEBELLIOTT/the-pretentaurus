@@ -70,4 +70,10 @@ export class PostController {
         this.getPosts()
     }
 
+    async likePost(id) {
+        await postsService.likePost(id, {})
+        await this.getPosts()
+    }
+
+
 }
