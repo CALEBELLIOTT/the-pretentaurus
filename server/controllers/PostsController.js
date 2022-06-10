@@ -11,8 +11,8 @@ export class PostsController extends BaseController {
             .get('', this.getAll)
             .get('/:id/comments', this.getComments)
             .get('/:id', this.getById)
-            .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.create)
+            .use(Auth0Provider.getAuthorizedUserInfo)
             .put('/:id', this.edit)
             .delete('/:id', this.remove)
     }
