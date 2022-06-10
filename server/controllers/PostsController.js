@@ -10,10 +10,12 @@ export class PostsController extends BaseController {
         this.router
             .get('', this.getAll)
             .get('/:id/comments', this.getComments)
+            .get('/:id', this.getById)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.create)
             .delete('/:id', this.remove)
     }
+   
 
     async getAll(req, res, next) {
         try {
@@ -32,6 +34,15 @@ export class PostsController extends BaseController {
         }
     }
 
+    async getById(req, res, next) {
+        try {
+            const foundPost = await postsService.getById(req.params.id)
+            return res.send(foundPost)
+        } catch (error) {
+            next(error)
+        }
+    }
+
     async create(req, res, next) {
         try {
             req.body.creatorId = req.userInfo.id
@@ -44,7 +55,9 @@ export class PostsController extends BaseController {
 
     async remove(req, res, next) {
         try {
-            let message = await postsService.remove(req.params.id)
+            let postId = req.params.id
+            let userId = req.userInfo.id
+            let message = await postsService.remove(postId, userId)
             return res.send(message)
         } catch (error) {
             next(error)
