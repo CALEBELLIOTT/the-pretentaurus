@@ -4,6 +4,7 @@ import { BadRequest, Forbidden } from "../utils/Errors";
 
 
 class CommentsService {
+    
     async getAll(query = {}) {
         return await dbContext.Comments.find(query)
     }
@@ -17,6 +18,22 @@ class CommentsService {
     async create(body) {
         return await dbContext.Comments.create(body)
     }
+
+   async edit(update) {
+        let original = await this.getById(update)
+        if (original.creatorId.toString() !== update.creatorId) {
+            throw new Forbidden ("You did not create this comment")
+        }
+        original.originalDescription = update.originalDescription || original.originalDescription
+        original.editedDescription = update.editedDescription || original.originalDescription
+        original.numberOfLikes = update.numberOfLikes || original.numberOfLikes
+
+
+        await original.save()
+
+        return original
+    }
+
     async remove(commentId, userId) {
         const comment = await this.getById(commentId)
         if (comment.creatorId.toString() !== userId){
