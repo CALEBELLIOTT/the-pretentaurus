@@ -5,11 +5,16 @@ import { logger } from "../utils/Logger"
 
 class PostsService {
     async getAll() {
-        const posts = await dbContext.Posts.find().sort('roomNumber')
+        const posts = await dbContext.Posts.find().sort('roomNumber').populate('creator', 'name')
+        //  posts.map(async(p) =>   {
+        //     await p.populate('creator', 'name')
+        // } )
         return posts
     }
     async create(body) {
         const post = await dbContext.Posts.create(body)
+        await post.populate('creator', 'name')
+        logger.log(body)
         return post
     }
 
@@ -34,6 +39,7 @@ class PostsService {
         if (!foundPost) {
             throw new BadRequest('No Post found with that Id')
         }
+        await foundPost.populate('creator', 'name')
         return foundPost
     }
 
