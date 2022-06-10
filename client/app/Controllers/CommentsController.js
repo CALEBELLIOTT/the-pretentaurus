@@ -23,7 +23,7 @@ export class CommentsController {
         console.log('creating comment');
         let form = window.event.target
         let data = {
-            description: form.description.value
+            originalDescription: form.originalDescription.value
         }
         form.reset()
         console.log(data);
