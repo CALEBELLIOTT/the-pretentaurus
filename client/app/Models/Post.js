@@ -1,39 +1,41 @@
 export class Post {
-  constructor(data) {
-    this.name = data.creator.name
-    this.title = data.title
-    this.originalDescription = data.originalDescription
-    this.editedDescription = data.editedDescription
-    this.numberOfLikes = data.numberOfLikes
-    this.likedBy = data.likedBy
-    this.imgUrl = data.imgUrl
-    this.id = data.id
-  }
+    constructor(data) {
+        this.name = data.creator.name
+        this.title = data.title
+        this.originalDescription = data.originalDescription
+        this.editedDescription = data.editedDescription
+        this.numberOfLikes = data.numberOfLikes
+        this.likedBy = data.likedBy
+        this.imgUrl = data.imgUrl
+        this.id = data.id
+    }
 
 
-  get Template() {
-    return `
-        <div class="col-md-4 d-flex">
-          <div class="post-card rounded p-2 shadow">
-            <div class="">
-            <h3>${this.name}</h3>
-            <button type="button" onclick="app.postsController.populateModal('${this.id}')" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#post-comment-modal">
-            See details
-            </button>
-            <button class="btn btn-danger " onclick="app.postsController.deletePost('${this.id}')">Delete</button>
-            </div>
-            <img class="img-fluid p-4"
-              src="${this.imgUrl}"
-              alt="">
-            <h4 class="">${this.title}</h4>
-            <p class="text-center">${this.editedDescription}</p>
-          </div>
-        </div>
+    get Template() {
+        return `
+        <div class="col-md-4">
+<div class="post-card rounded p-2 shadow">
+  <div class="text-break">
+    <h4>${this.name}</h4>
+  </div>
+  <img class="img-fluid p-4"
+    src="${this.imgUrl}"
+    alt="">
+  <h4 class="text-center">${this.title}</h4>
+  <p class="text-center">${this.editedDescription}</p>
+  <div class="d-flex justify-content-between">
+   <button type="button" onclick="app.postsController.populateModal('${this.id}')" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#post-comment-modal">
+  See details
+</button>
+    <button class="btn btn-danger " onclick="app.postsController.deletePost('${this.id}')">Delete</button>
+    </div>
+</div>
+</div>
 `
-  }
+    }
 
-  get commentTemplate() {
-    return `
+    get commentTemplate() {
+        return `
  <div class="row">
       <div class="col-6">
         <h3>${this.title}</h3>
@@ -52,6 +54,6 @@ export class Post {
       </div>
     </div>
 `
-  }
+    }
 }
 
