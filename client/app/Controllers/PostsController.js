@@ -8,11 +8,19 @@ function _draw() {
     document.getElementById('post-body').innerHTML = template
 }
 
+
+
 export class PostController {
     constructor() {
         console.log('post controllers');
         this.getPosts()
         ProxyState.on('posts', _draw)
+    }
+
+    populateModal(id) {
+        const post = ProxyState.posts.find(p => p.id == id)
+        console.log('post', post)
+        document.getElementById('comment-body-post').innerHTML = post.commentTemplate
     }
 
     async createPost() {

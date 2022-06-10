@@ -17,7 +17,7 @@ export class Post {
 <div class="post-card rounded p-2 shadow">
   <div class="d-flex justify-content-between ">
     <h3>${this.name}</h3>
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#post-comment-modal">
+    <button type="button" onclick="app.postsController.populateModal('${this.id}')" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#post-comment-modal">
   See details
 </button>
     <button class="btn btn-danger " onclick="app.postsController.deletePost('${this.id}')">Delete</button>
@@ -45,7 +45,7 @@ export class Post {
         <p>${this.numberOfLikes}</p>
       </div>
       <div class="col-6">
-        <img src="${this.imgUrl}" alt="">
+        <img class="img-fluid" src="${this.imgUrl}" alt="">
       </div>
       <div class="col-6">
         <p>${this.originalDescription}</p>
