@@ -13,22 +13,22 @@ export class Post {
 
   get Template() {
     return `
-        <div class="col-md-4">
-<div class="post-card rounded p-2 shadow">
-  <div class="d-flex justify-content-between ">
-    <h3>${this.name}</h3>
-    <button type="button" onclick="app.postsController.populateModal('${this.id}')" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#post-comment-modal">
-  See details
-</button>
-    <button class="btn btn-danger " onclick="app.postsController.deletePost('${this.id}')">Delete</button>
-  </div>
-  <img class="img-fluid p-4"
-    src="${this.imgUrl}"
-    alt="">
-  <h4 class="">${this.title}</h4>
-  <p class="text-center">${this.editedDescription}</p>
-</div>
-</div>
+        <div class="col-md-4 d-flex">
+          <div class="post-card rounded p-2 shadow">
+            <div class="">
+            <h3>${this.name}</h3>
+            <button type="button" onclick="app.postsController.populateModal('${this.id}')" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#post-comment-modal">
+            See details
+            </button>
+            <button class="btn btn-danger " onclick="app.postsController.deletePost('${this.id}')">Delete</button>
+            </div>
+            <img class="img-fluid p-4"
+              src="${this.imgUrl}"
+              alt="">
+            <h4 class="">${this.title}</h4>
+            <p class="text-center">${this.editedDescription}</p>
+          </div>
+        </div>
 `
   }
 
