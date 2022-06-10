@@ -10,10 +10,45 @@
     integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <link rel="stylesheet" href="//cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="assets/style/main.css">
+  <link rel="stylesheet" href="assets/style/styles.css">
   <title>the-pretentaurus</title>
 </head>
 
 <body>
+
+
+  <div class="modal fade" id="new-post-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create a Post</h5>
+
+        </div>
+        <div class="modal-body">
+          <form onsubmit="app.postsController.createPost()" action="">
+            <div class="row">
+              <div class="col-6">
+                <input class="form-control" type="text" name="url" id="url" placeholder="Add Image Url...">
+              </div>
+              <div class="col-6">
+                <input class="form-control" type="text" name="title" id="title" placeholder="Add Title...">
+              </div>
+              <div class="col-12">
+                <textarea class="form-control mt-3" type="textarea" name="description" id="description"
+                  placeholder="Add a Description..." rows="3"></textarea>
+              </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Create Post</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
   <header>
     <nav class="navbar navbar-dark navbar-expand bg-dark text-light">
       <a class="navbar-brand" href="#">
@@ -30,30 +65,28 @@
           <!-- NAVLINKS -->
         </div>
       </div>
+      <button data-bs-toggle="modal" data-bs-target="#new-post-modal">Click</button>
       <div class="flex-grow-1 justify-content-end align-items-center d-flex" id="authstate"></div>
     </nav>
   </header>
-  <main id="app">
+  <main>
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-4 card">
-          <div class="post-card">
-            <div class="d-flex justify-content-between">
-              <h3>Creator name</h3>
-              <button>Delete</button>
-            </div>
+      <div class="row" id="post-body">
 
-            <img
-              src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fwildlife.utah.gov%2Fimages%2Ffish%2Ftiger_muskie.jpg&imgrefurl=https%3A%2F%2Fwildlife.utah.gov%2Fmuskie&tbnid=jL0tUnqsHA3GTM&vet=12ahUKEwjGob6snaP4AhV3IDQIHXY7A4YQMygAegUIARDPAQ..i&docid=-m5N3F0--G4T4M&w=900&h=594&q=tiger%20muskies&ved=2ahUKEwjGob6snaP4AhV3IDQIHXY7A4YQMygAegUIARDPAQ"
+        <!-- <div class="col-4">
+          <div class="post-card rounded p-2">
+            <div class="d-flex justify-content-between ">
+              <h3>Creator name</h3>
+              <button class="btn btn-danger ">Delete</button>
+            </div>
+            <img class="img-fluid p-4"
+              src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
               alt="">
+            <h4 class="">title</h4>
+            <p class="text-center">description</p>
           </div>
-        </div>
-        <div class="col-4 card">
-          <div class="post-card"></div>
-        </div>
-        <div class="col-4 card">
-          <div class="post-card"></div>
-        </div>
+        </div> -->
+
       </div>
     </div>
   </main>

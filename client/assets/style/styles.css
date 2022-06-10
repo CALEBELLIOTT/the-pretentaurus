@@ -1,0 +1,11 @@
+body {
+    background-color: rgb(76, 87, 96);
+}
+
+.post-card {
+    background-color: rgb(147, 168, 172);
+    /* height: 20rem;
+    width: 20rem; */
+    margin: 3rem;
+
+}
