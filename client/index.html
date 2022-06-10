@@ -53,12 +53,38 @@
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          ...
+        <div class="modal-body" id="comment-body">
+          <!-- <div class="row">
+                  <div class="col-6">
+                    <h3>title</h3>
+                  </div>
+                  <div class="col-3">
+                    <p>username</p>
+                  </div>
+                  <div class="col-3">
+                    <p>likes</p>
+                  </div>
+                  <div class="col-6">
+                    <img src="" alt="">
+                  </div>
+                  <div class="col-6">
+                    <p>This will be description</p>
+                  </div>
+                  <div class="col-3">
+                    commentor username
+                  </div>
+                  <div class="col-9">
+                    comment body
+                  </div>
+                </div> -->
         </div>
+        <form class="form" onsubmit="app.todoController.createComment()">
+          <input name="description" id="description" autofocus required minlength="3" type="text"
+            aria-label="Enter a new todo item" placeholder="Comment">
+        </form>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary">Save changes</button>
@@ -109,35 +135,8 @@
       </div>
     </div>
 
-
-
-    <!-- NOTE this will be the get template for the modal for big view of posts -->
-
-    <div class="row">
-      <div class="col-6">
-        <h3>title</h3>
-      </div>
-      <div class="col-3">
-        <p>username</p>
-      </div>
-      <div class="col-3">
-        <p>likes</p>
-      </div>
-      <div class="col-6">
-        <img src="" alt="">
-      </div>
-      <div class="col-6">
-        <p>This will be description</p>
-      </div>
-      <div class="col-3">
-        commentor username
-      </div>
-      <div class="col-9">
-        comment body
-      </div>
-    </div>
-
   </main>
+
   <footer class="container-fluid bg-dark text-light">
     <div class="row text-center">
       <div class="col">

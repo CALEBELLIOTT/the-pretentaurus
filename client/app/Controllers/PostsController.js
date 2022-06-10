@@ -8,7 +8,6 @@ function _draw() {
     document.getElementById('post-body').innerHTML = template
 }
 
-
 export class PostController {
     constructor() {
         console.log('post controllers');

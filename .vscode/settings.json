@@ -3,6 +3,8 @@
         "bcwdev",
         "Btvuw",
         "cbpq",
+        "commentor",
+        "doesnt",
         "Hvef"
     ],
     "workbench.colorCustomizations": {
@@ -24,5 +26,8 @@
         "titleBar.inactiveBackground": "#d7ceb299",
         "titleBar.inactiveForeground": "#15202b99"
     },
-    "peacock.color": "D7CEB2"
+    "peacock.color": "D7CEB2",
+    "cSpell.ignoreWords": [
+        "pretentaurus"
+    ]
 }

@@ -1,5 +1,6 @@
 export class Post {
   constructor(data) {
+    this.name = data.creator.name
     this.title = data.title
     this.originalDescription = data.originalDescription
     this.editedDescription = data.editedDescription
@@ -15,7 +16,7 @@ export class Post {
         <div class="col-md-4">
 <div class="post-card rounded p-2 shadow">
   <div class="d-flex justify-content-between ">
-    <h3></h3>
+    <h3>${this.name}</h3>
     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#post-comment-modal">
   See details
 </button>
@@ -29,6 +30,27 @@ export class Post {
 </div>
 </div>
 `
+  }
 
+  get commentTemplate() {
+    return `
+ <div class="row">
+      <div class="col-6">
+        <h3>${this.title}</h3>
+      </div>
+      <div class="col-3">
+        <p>${this.name}</p>
+      </div>
+      <div class="col-3">
+        <p>${this.numberOfLikes}</p>
+      </div>
+      <div class="col-6">
+        <img src="${this.imgUrl}" alt="">
+      </div>
+      <div class="col-6">
+        <p>${this.originalDescription}</p>
+      </div>
+    </div>
+`
   }
 }
