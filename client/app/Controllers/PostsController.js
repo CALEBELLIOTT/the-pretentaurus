@@ -17,7 +17,17 @@ export class PostController {
         ProxyState.on('posts', _draw)
     }
 
+    getCurrentComments(postId) {
+
+        console.log(postId);
+        ProxyState.currentComments = ProxyState.comments.filter(c => c.postId.toString() == postId.toString())
+        console.log(ProxyState.comments);
+        console.log(ProxyState.currentComments);
+    }
+
     populateModal(id) {
+        console.log(id);
+        this.getCurrentComments(id)
         const post = ProxyState.posts.find(p => p.id == id)
         console.log('post', post)
         document.getElementById('comment-body-post').innerHTML = post.commentTemplate

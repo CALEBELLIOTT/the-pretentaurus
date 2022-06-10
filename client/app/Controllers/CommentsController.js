@@ -2,21 +2,24 @@ import { ProxyState } from "../AppState.js";
 import { commentsService } from "../Services/CommentsService.js";
 
 function _draw() {
-    let comments = ProxyState.comments
+    let comments = ProxyState.currentComments
     let template = ''
     comments.forEach(c => template += c.Template)
     document.getElementById('comment-body').innerHTML = template
 }
 
+
 export class CommentsController {
     constructor() {
         console.log('comment controllers');
         this.getComments()
-        ProxyState.on('comments', _draw)
+        ProxyState.on('currentComments', _draw)
+
     }
 
     async createComment() {
         try {
+            debugger
             window.event.preventDefault()
             console.log('creating comment');
             let form = window.event.target
