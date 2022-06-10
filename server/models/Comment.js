@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 export const CommentSchema = new Schema({
     originalDescription: { type: String, required: true },
-    editedDescription: { type: String, required: true },
+    editedDescription: { type: String },
     numberOfLikes: { type: Number, min: 0, default: 0 },
     likedBy: { type: Array },
     creatorId: { type: Schema.Types.ObjectId, ref: 'Account' },
