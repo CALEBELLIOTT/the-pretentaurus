@@ -18,7 +18,16 @@ class PostsService {
         if (original.creatorId.toString() !== update.creatorId) {
             throw new Forbidden("You cannot edit this post")
         }
+        original.title = update.title || original.title
+        original.description = update.originalDescription || original.originalDescription
+        original.editedDescription = update.editedDescription || original.editedDescription
+        original.numberOfLikes = update.numberOfLikes || original.numberOfLikes
+
+        await original.save()
+
+        return original
     }
+
 
     async getById(id) {
         const foundPost = await dbContext.Posts.findById(id)
@@ -27,6 +36,7 @@ class PostsService {
         }
         return foundPost
     }
+
     async remove(postId, userId) {
         const post = await this.getById(postId)
         if (post.creatorId.toString() !== userId) {
@@ -35,7 +45,6 @@ class PostsService {
         await post.remove()
         return `deleted ${post.title}`
     }
-
 }
 
 export const postsService = new PostsService()
