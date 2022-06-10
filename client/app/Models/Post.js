@@ -1,18 +1,17 @@
 export class Post {
-    constructor(data) {
-        this.title = data.title
-        this.creatorId = data.creatorId
-        this.originalDescription = data.originalDescription
-        this.editedDescription = data.editedDescription
-        this.numberOfLikes = data.numberOfLikes
-        this.likedBy = data.likedBy
-        this.imgUrl = data.imgUrl
+  constructor(data) {
+    this.title = data.title
+    this.originalDescription = data.originalDescription
+    this.editedDescription = data.editedDescription
+    this.numberOfLikes = data.numberOfLikes
+    this.likedBy = data.likedBy
+    this.imgUrl = data.imgUrl
 
-    }
+  }
 
 
-    get Template() {
-        return `
+  get Template() {
+    return `
         <div class="col-4">
 <div class="post-card rounded p-2">
   <div class="d-flex justify-content-between ">
@@ -28,5 +27,5 @@ export class Post {
 </div>
 `
 
-    }
+  }
 }
