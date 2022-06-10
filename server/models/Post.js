@@ -18,9 +18,3 @@ PostSchema.virtual('creator', {
     ref: 'Profile'
 })
 
-// PostSchema.virtual('name', {
-//     localField: 'creatorName',
-//     foreignField: 'name',
-//     justOne: true,
-//     ref: 'Profile'
-// })

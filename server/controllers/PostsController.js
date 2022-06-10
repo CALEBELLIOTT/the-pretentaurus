@@ -14,6 +14,7 @@ export class PostsController extends BaseController {
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.create)
             .put('/:id', this.edit)
+            .put('/:id/likes', this.like)
             .delete('/:id', this.remove)
     }
 
@@ -72,6 +73,17 @@ export class PostsController extends BaseController {
             let userId = req.userInfo.id
             let message = await postsService.remove(postId, userId)
             return res.send(message)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async like(req, res, next) {
+        try {
+            req.body.id = req.params.id
+            req.body.creatorId = req.userInfo.id
+            let liked = await postsService.like(req.body)
+            return res.send(liked)
         } catch (error) {
             next(error)
         }

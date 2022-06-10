@@ -4,9 +4,10 @@ import { logger } from "../utils/Logger"
 
 
 class PostsService {
+
     async getAll() {
         const posts = await dbContext.Posts.find().sort('roomNumber').populate('creator', 'name')
-            //  posts.map(async(p) =>   {
+        //  posts.map(async(p) =>   {
         //     await p.populate('creator', 'name')
         // } )
         return posts
@@ -30,6 +31,20 @@ class PostsService {
 
         await original.save()
 
+        return original
+    }
+
+    async like(body) {
+        let original = await this.getById(body.id)
+        let found = original.likedBy.find(id => id == body.creatorId)
+        if (!found) {
+            original.numberOfLikes++
+            original.likedBy.push(body.creatorId)
+        } else {
+            original.numberOfLikes--
+            original.likedBy = original.likedBy.filter(id => id != body.creatorId)
+        }
+        await original.save()
         return original
     }
 
