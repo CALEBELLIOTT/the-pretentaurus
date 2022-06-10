@@ -2,9 +2,9 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 export const PostSchema = new Schema({
-    title: { type: String, required: true },
-    originalDescription: { type: String, required: true },
-    editedDescription: { type: String, required: true },
+    title: { type: String },
+    originalDescription: { type: String},
+    editedDescription: { type: String},
     numberOfLikes: { type: Number, min: 0, default: 0 },
     creatorId: { type: Schema.Types.ObjectId, ref: 'Profile', required: true },
     likedBy: { type: String },
