@@ -47,7 +47,6 @@ export class PostController {
         console.log(data);
         try {
             await postsService.createPost(data)
-
         } catch (error) {
             console.error(error);
         }
@@ -70,11 +69,5 @@ export class PostController {
         }
         this.getPosts()
     }
-
-    async likePost(id) {
-        await postsService.likePost(id, {})
-        await this.getPosts()
-    }
-
 
 }
