@@ -18,7 +18,7 @@ export class CommentsController {
     }
 
     async createComment() {
-        debugger
+        
         window.event.preventDefault()
         console.log('creating comment');
         let form = window.event.target
