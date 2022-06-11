@@ -11,7 +11,7 @@ export class Comment {
 
   get Template() {
     return `
- <div class="col-3">
+  <div class="col-3">
         ${this.name}
       </div>
       <div class="col-9">
