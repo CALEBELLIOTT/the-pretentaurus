@@ -17,12 +17,12 @@ export class CommentsController {
 
     }
 
-    async createComment() {
-        
+    async createComment(id) {
         window.event.preventDefault()
         console.log('creating comment');
         let form = window.event.target
         let data = {
+            postId: id,
             originalDescription: form.originalDescription.value
         }
         form.reset()
