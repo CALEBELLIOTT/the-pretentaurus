@@ -47,6 +47,7 @@ export class PostController {
         console.log(data);
         try {
             await postsService.createPost(data)
+
         } catch (error) {
             console.error(error);
         }

@@ -1,18 +1,18 @@
 export class Post {
-    constructor(data) {
-        this.name = data.creator.name
-        this.title = data.title
-        this.originalDescription = data.originalDescription
-        this.editedDescription = data.editedDescription
-        this.numberOfLikes = data.numberOfLikes
-        this.likedBy = data.likedBy
-        this.imgUrl = data.imgUrl
-        this.id = data.id
-    }
+  constructor(data) {
+    this.name = data.creator.name
+    this.title = data.title
+    this.originalDescription = data.originalDescription
+    this.editedDescription = data.editedDescription
+    this.numberOfLikes = data.numberOfLikes
+    this.likedBy = data.likedBy
+    this.imgUrl = data.imgUrl
+    this.id = data.id
+  }
 
 
-    get Template() {
-        return `
+  get Template() {
+    return `
         <div class="col-md-4">
 <div class="post-card rounded p-2 shadow">
   <div class="text-break">
@@ -32,10 +32,10 @@ export class Post {
 </div>
 </div>
 `
-    }
+  }
 
-    get commentTemplate() {
-        return `
+  get commentTemplate() {
+    return `
  <div class="row">
       <div class="col-6">
         <h3>${this.title}</h3>
@@ -52,8 +52,12 @@ export class Post {
       <div class="col-6">
         <p>${this.originalDescription}</p>
       </div>
+      <form class="form" onsubmit="app.commentsController.createComment('${this.id}')">
+          <input name="originalDescription" id="originalDescription" autofocus required minlength="3" type="text"
+            aria-label="Enter a comment" placeholder="Comment">
+        </form>
     </div>
 `
-    }
+  }
 }
 
