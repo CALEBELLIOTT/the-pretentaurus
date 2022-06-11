@@ -15,8 +15,9 @@ export class Post {
     return `
         <div class="col-md-4">
 <div class="post-card rounded p-2 shadow">
-  <div class="text-break">
+  <div class="d-flex justify-content-between text-break">
     <h4>${this.name}</h4>
+    <span class="mdi mdi-arrow-up" onclick="app.postsController.likePost('${this.id}')"><span>${this.numberOfLikes}</span></span>
   </div>
   <img class="img-fluid p-4"
     src="${this.imgUrl}"
