@@ -1,7 +1,7 @@
 import { ProxyState } from "../AppState.js";
 import { api } from "./AxiosService.js";
 import { Comment } from "../Models/Comment.js";
-import { application } from "express";
+
 
 class CommentsService {
 
@@ -13,7 +13,6 @@ class CommentsService {
     }
     async createComment(data) {
         const res = await api.post('api/comments', data)
-        // App.postsController.getCurrentComments(data.postId)
         console.log(res.data);
 
     }
